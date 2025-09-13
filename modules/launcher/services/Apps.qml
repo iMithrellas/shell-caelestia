@@ -25,6 +25,7 @@ Searcher {
 
     function search(search: string): list<var> {
         const prefix = Config.launcher.specialPrefix;
+        const keywordsByDefault = Config.launcher.keywordsByDefault;
 
         if (search.startsWith(`${prefix}i `)) {
             keys = ["id", "name"];
@@ -47,9 +48,15 @@ Searcher {
         } else if (search.startsWith(`${prefix}k `)) {
             keys = ["keywords", "name"];
             weights = [0.9, 0.1];
+        } else if (keywordsByDefault) {
+            keys = ["keywords", "name"];
+            weights = [0.9, 0.1];
+
+            if (!search.startsWith(`${prefix}t `))
+                return query(search).map(e => e.entry);
         } else {
             keys = ["name"];
-            weights = [1];
+            weights = [1.0];
 
             if (!search.startsWith(`${prefix}t `))
                 return query(search).map(e => e.entry);
