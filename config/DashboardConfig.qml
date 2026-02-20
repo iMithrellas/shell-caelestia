@@ -19,6 +19,7 @@ JsonObject {
     }
 
     component Sizes: JsonObject {
+        property real fontScaleBase: 13
         readonly property int tabIndicatorHeight: 3
         readonly property int tabIndicatorSpacing: 5
         readonly property int infoWidth: 200

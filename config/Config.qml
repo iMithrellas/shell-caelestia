@@ -269,6 +269,7 @@ Singleton {
                 showNetwork: dashboard.performance.showNetwork
             },
             sizes: {
+                fontScaleBase: dashboard.sizes.fontScaleBase,
                 tabIndicatorHeight: dashboard.sizes.tabIndicatorHeight,
                 tabIndicatorSpacing: dashboard.sizes.tabIndicatorSpacing,
                 infoWidth: dashboard.sizes.infoWidth,
