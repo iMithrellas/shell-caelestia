@@ -9,6 +9,8 @@ import qs.utils
 Item {
     id: root
 
+    readonly property real uiScale: Appearance.font.size.normal / Math.max(1, Config.dashboard.sizes.fontScaleBase)
+
     property real playerProgress: {
         const active = Players.active;
         return active?.length ? active.position / active.length : 0;
@@ -16,7 +18,7 @@ Item {
 
     anchors.top: parent.top
     anchors.bottom: parent.bottom
-    implicitWidth: Config.dashboard.sizes.mediaWidth
+    implicitWidth: Config.dashboard.sizes.mediaWidth * uiScale
 
     Behavior on playerProgress {
         Anim {
