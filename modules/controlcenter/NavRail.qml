@@ -146,12 +146,6 @@ Item {
             name: "expanded"
             when: root.session.navExpanded
 
-            AnchorChanges {
-                target: icon
-                anchors.horizontalCenter: undefined
-                anchors.left: background.left
-            }
-
             PropertyChanges {
                 expandedLabel.opacity: 1
                 smallLabel.opacity: 0
@@ -172,10 +166,6 @@ Item {
                 duration: Appearance.anim.durations.expressiveDefaultSpatial
                 easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
             }
-
-            AnchorAnimation {
-                duration: Appearance.anim.durations.expressiveDefaultSpatial
-            }
         }
 
         StyledRect {
@@ -184,7 +174,7 @@ Item {
             radius: Appearance.rounding.full
             color: Qt.alpha(Colours.palette.m3secondaryContainer, item.active ? 1 : 0)
 
-            implicitWidth: Math.max(icon.implicitWidth + icon.anchors.leftMargin * 2, smallLabel.implicitWidth + Appearance.padding.normal * 2)
+            implicitWidth: icon.implicitWidth + icon.anchors.leftMargin * 2
             implicitHeight: icon.implicitHeight + Appearance.padding.small
 
             StateLayer {
@@ -202,7 +192,7 @@ Item {
             MaterialIcon {
                 id: icon
 
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.leftMargin: Appearance.padding.large
 
@@ -232,7 +222,7 @@ Item {
             StyledText {
                 id: smallLabel
 
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenter: icon.horizontalCenter
                 anchors.top: icon.bottom
                 anchors.topMargin: Appearance.spacing.small / 2
 
