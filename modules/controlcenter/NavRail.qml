@@ -15,6 +15,8 @@ Item {
     required property Session session
     required property bool initialOpeningComplete
 
+    readonly property real uiScale: Appearance.font.size.normal / Math.max(1, Config.controlCenter.sizes.fontScaleBase)
+
     implicitWidth: layout.implicitWidth + Appearance.padding.larger * 4
     implicitHeight: layout.implicitHeight + Appearance.padding.large * 2
 
@@ -144,6 +146,12 @@ Item {
             name: "expanded"
             when: root.session.navExpanded
 
+            AnchorChanges {
+                target: icon
+                anchors.horizontalCenter: undefined
+                anchors.left: background.left
+            }
+
             PropertyChanges {
                 expandedLabel.opacity: 1
                 smallLabel.opacity: 0
@@ -163,6 +171,10 @@ Item {
                 properties: "implicitWidth,implicitHeight"
                 duration: Appearance.anim.durations.expressiveDefaultSpatial
                 easing.bezierCurve: Appearance.anim.curves.expressiveDefaultSpatial
+            }
+
+            AnchorAnimation {
+                duration: Appearance.anim.durations.expressiveDefaultSpatial
             }
         }
 
@@ -190,7 +202,7 @@ Item {
             MaterialIcon {
                 id: icon
 
-                anchors.left: parent.left
+                anchors.horizontalCenter: parent.horizontalCenter
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.leftMargin: Appearance.padding.large
 
@@ -220,7 +232,7 @@ Item {
             StyledText {
                 id: smallLabel
 
-                anchors.horizontalCenter: icon.horizontalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: icon.bottom
                 anchors.topMargin: Appearance.spacing.small / 2
 
