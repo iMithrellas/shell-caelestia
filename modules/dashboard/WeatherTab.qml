@@ -8,8 +8,9 @@ Item {
     id: root
 
     readonly property var today: Weather.forecast && Weather.forecast.length > 0 ? Weather.forecast[0] : null
+    readonly property real uiScale: Appearance.font.size.normal / Math.max(1, Config.dashboard.sizes.fontScaleBase)
 
-    implicitWidth: layout.implicitWidth > 800 ? layout.implicitWidth : 840
+    implicitWidth: layout.implicitWidth > 800 * uiScale ? layout.implicitWidth : 840 * uiScale
     implicitHeight: layout.implicitHeight
     Component.onCompleted: Weather.reload()
 
@@ -212,7 +213,7 @@ Item {
         property color colour
 
         Layout.fillWidth: true
-        Layout.preferredHeight: 60
+        Layout.preferredHeight: 60 * root.uiScale
         radius: Appearance.rounding.small
         color: Colours.tPalette.m3surfaceContainer
 

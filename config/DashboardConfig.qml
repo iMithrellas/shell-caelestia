@@ -36,5 +36,6 @@ JsonObject {
         readonly property int mediaCoverArtSize: 150
         readonly property int mediaVisualiserSize: 80
         readonly property int resourceSize: 200
+        property real fontScaleBase: 13
     }
 }

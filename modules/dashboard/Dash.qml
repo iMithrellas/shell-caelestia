@@ -12,6 +12,8 @@ GridLayout {
     required property DashboardState dashState
     required property FileDialog facePicker
 
+    readonly property real uiScale: Appearance.font.size.normal / Math.max(1, Config.dashboard.sizes.fontScaleBase)
+
     rowSpacing: Appearance.spacing.normal
     columnSpacing: Appearance.spacing.normal
 
@@ -34,7 +36,7 @@ GridLayout {
     Rect {
         Layout.row: 0
         Layout.columnSpan: 2
-        Layout.preferredWidth: Config.dashboard.sizes.weatherWidth
+        Layout.preferredWidth: Config.dashboard.sizes.weatherWidth * root.uiScale
         Layout.fillHeight: true
 
         radius: Appearance.rounding.large * 1.5
@@ -87,7 +89,7 @@ GridLayout {
         Layout.row: 0
         Layout.column: 5
         Layout.rowSpan: 2
-        Layout.preferredWidth: media.implicitWidth
+        Layout.preferredWidth: Math.max(media.implicitWidth, Config.dashboard.sizes.mediaWidth * root.uiScale)
         Layout.fillHeight: true
 
         radius: Appearance.rounding.large * 2

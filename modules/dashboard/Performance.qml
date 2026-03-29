@@ -11,7 +11,8 @@ import qs.config
 Item {
     id: root
 
-    readonly property int minWidth: 400 + 400 + Appearance.spacing.normal + 120 + Appearance.padding.large * 2
+    readonly property real uiScale: Appearance.font.size.normal / Math.max(1, Config.dashboard.sizes.fontScaleBase)
+    readonly property int minWidth: 400 * uiScale + 400 * uiScale + Appearance.spacing.normal + 120 * uiScale + Appearance.padding.large * 2
 
     function displayTemp(temp: real): string {
         return `${Math.ceil(Config.services.useFahrenheitPerformance ? temp * 1.8 + 32 : temp)}°${Config.services.useFahrenheitPerformance ? "F" : "C"}`;
@@ -24,8 +25,8 @@ Item {
         id: placeholder
 
         anchors.centerIn: parent
-        width: 400
-        height: 350
+        width: 400 * root.uiScale
+        height: 350 * root.uiScale
         radius: Appearance.rounding.large
         color: Colours.tPalette.m3surfaceContainer
         visible: !Config.dashboard.performance.showCpu && !(Config.dashboard.performance.showGpu && SystemUsage.gpuType !== "NONE") && !Config.dashboard.performance.showMemory && !Config.dashboard.performance.showStorage && !Config.dashboard.performance.showNetwork && !(UPower.displayDevice.isLaptopBattery && Config.dashboard.performance.showBattery)
@@ -82,8 +83,8 @@ Item {
 
                 HeroCard {
                     Layout.fillWidth: true
-                    Layout.minimumWidth: 400
-                    Layout.preferredHeight: 150
+                    Layout.minimumWidth: 400 * root.uiScale
+                    Layout.preferredHeight: Math.max(150 * root.uiScale, Appearance.font.size.extraLarge * 4)
                     visible: Config.dashboard.performance.showCpu
                     icon: "memory"
                     title: SystemUsage.cpuName ? `CPU - ${SystemUsage.cpuName}` : qsTr("CPU")
@@ -98,8 +99,8 @@ Item {
 
                 HeroCard {
                     Layout.fillWidth: true
-                    Layout.minimumWidth: 400
-                    Layout.preferredHeight: 150
+                    Layout.minimumWidth: 400 * root.uiScale
+                    Layout.preferredHeight: Math.max(150 * root.uiScale, Appearance.font.size.extraLarge * 4)
                     visible: Config.dashboard.performance.showGpu && SystemUsage.gpuType !== "NONE"
                     icon: "desktop_windows"
                     title: SystemUsage.gpuName ? `GPU - ${SystemUsage.gpuName}` : qsTr("GPU")
@@ -119,8 +120,8 @@ Item {
                 visible: Config.dashboard.performance.showMemory || Config.dashboard.performance.showStorage || Config.dashboard.performance.showNetwork
 
                 GaugeCard {
-                    Layout.minimumWidth: 250
-                    Layout.preferredHeight: 220
+                    Layout.minimumWidth: 250 * root.uiScale
+                    Layout.preferredHeight: Math.max(220 * root.uiScale, Appearance.font.size.extraLarge * 5.8)
                     Layout.fillWidth: !Config.dashboard.performance.showStorage && !Config.dashboard.performance.showNetwork
                     icon: "memory_alt"
                     title: qsTr("Memory")
@@ -135,23 +136,23 @@ Item {
                 }
 
                 StorageGaugeCard {
-                    Layout.minimumWidth: 250
-                    Layout.preferredHeight: 220
+                    Layout.minimumWidth: 250 * root.uiScale
+                    Layout.preferredHeight: Math.max(220 * root.uiScale, Appearance.font.size.extraLarge * 5.8)
                     Layout.fillWidth: !Config.dashboard.performance.showNetwork
                     visible: Config.dashboard.performance.showStorage
                 }
 
                 NetworkCard {
                     Layout.fillWidth: true
-                    Layout.minimumWidth: 200
-                    Layout.preferredHeight: 220
+                    Layout.minimumWidth: 200 * root.uiScale
+                    Layout.preferredHeight: Math.max(220 * root.uiScale, Appearance.font.size.extraLarge * 5.8)
                     visible: Config.dashboard.performance.showNetwork
                 }
             }
         }
 
         BatteryTank {
-            Layout.preferredWidth: 120
+            Layout.preferredWidth: 120 * root.uiScale
             Layout.preferredHeight: mainColumn.implicitHeight
             visible: UPower.displayDevice.isLaptopBattery && Config.dashboard.performance.showBattery
         }
