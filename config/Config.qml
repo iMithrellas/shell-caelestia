@@ -273,6 +273,12 @@ Singleton {
                 variants: launcher.useFuzzy.variants,
                 wallpapers: launcher.useFuzzy.wallpapers
             },
+            sizes: {
+                itemWidth: launcher.sizes.itemWidth,
+                itemHeight: launcher.sizes.itemHeight,
+                wallpaperWidth: launcher.sizes.wallpaperWidth,
+                wallpaperHeight: launcher.sizes.wallpaperHeight
+            },
             actions: launcher.actions
         };
     }
@@ -286,7 +292,12 @@ Singleton {
             expandThreshold: notifs.expandThreshold,
             actionOnClick: notifs.actionOnClick,
             groupPreviewNum: notifs.groupPreviewNum,
-            openExpanded: notifs.openExpanded
+            openExpanded: notifs.openExpanded,
+            sizes: {
+                width: notifs.sizes.width,
+                image: notifs.sizes.image,
+                badge: notifs.sizes.badge
+            }
         };
     }
 
@@ -379,7 +390,10 @@ Singleton {
     function serializeSidebar(): var {
         return {
             enabled: sidebar.enabled,
-            dragThreshold: sidebar.dragThreshold
+            dragThreshold: sidebar.dragThreshold,
+            sizes: {
+                width: sidebar.sizes.width
+            }
         };
     }
 
