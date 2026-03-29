@@ -244,7 +244,13 @@ Singleton {
     }
 
     function serializeControlCenter(): var {
-        return {};
+        return {
+            sizes: {
+                heightMult: controlCenter.sizes.heightMult,
+                ratio: controlCenter.sizes.ratio,
+                fontScaleBase: controlCenter.sizes.fontScaleBase
+            }
+        };
     }
 
     function serializeLauncher(): var {

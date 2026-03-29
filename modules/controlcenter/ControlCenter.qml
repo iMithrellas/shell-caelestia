@@ -13,6 +13,7 @@ Item {
 
     required property ShellScreen screen
     readonly property int rounding: floating ? 0 : Appearance.rounding.normal
+    readonly property real uiScale: Appearance.font.size.normal / Math.max(1, Config.controlCenter.sizes.fontScaleBase)
 
     property alias floating: session.floating
     property alias active: session.active

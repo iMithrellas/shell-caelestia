@@ -172,7 +172,7 @@ Item {
             radius: Appearance.rounding.full
             color: Qt.alpha(Colours.palette.m3secondaryContainer, item.active ? 1 : 0)
 
-            implicitWidth: icon.implicitWidth + icon.anchors.leftMargin * 2
+            implicitWidth: Math.max(icon.implicitWidth + icon.anchors.leftMargin * 2, smallLabel.implicitWidth + Appearance.padding.normal * 2)
             implicitHeight: icon.implicitHeight + Appearance.padding.small
 
             StateLayer {
